@@ -114,3 +114,14 @@ def procesar_link(link: str):
 @app.post("/procesar-video")
 async def procesar_video(file: UploadFile = File(...)):
     with tempfile.TemporaryDirectory() as tmpdir:
+        try:
+            file_path = os.path.join(tmpdir, file.filename)
+            with open(file_path, "wb") as f:
+                f.write(await file.read())
+            texto = transcribir_audio(file_path)
+            return {
+                "link": "archivo_local",
+                "descripcion": texto
+            }
+        except Exception as e:
+            return {"error": str(e)}
