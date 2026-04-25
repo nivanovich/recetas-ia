@@ -30,7 +30,7 @@ async def read_index():
 
 # Modelo para recibir el link correctamente desde Flowise
 class LinkInput(BaseModel):
-    link: str
+    url: str
 
 # --- CARGA DEL MODELO ---
 MODEL_SIZE = "base"
@@ -87,7 +87,7 @@ def transcribir_audio(ruta_audio):
 
 @app.post("/procesar-link")
 async def procesar_link(input_data: LinkInput):
-    link = input_data.link
+    link = input_data.url
     
     if verificar_link_duplicado(link):
         return {"resultado": "Este link ya fue procesado."}
