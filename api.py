@@ -7,9 +7,16 @@ import gspread
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from faster_whisper import WhisperModel
 from google.oauth2.service_account import Credentials
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
+@app.get("/")
+async def read_index():
+    return FileResponse('static/index.html')
 # --- CARGA DEL MODELO ---
 MODEL_SIZE = "base"
 model = WhisperModel(MODEL_SIZE)

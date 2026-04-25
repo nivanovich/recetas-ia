@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Asistente de Recetas</title>
+</head>
+<body>
+    <h1>Bienvenido a tu Cocina Inteligente</h1>
+    <p>Haz clic en la burbuja de la derecha para empezar.</p>
+
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "a7091689-5dd4-4f63-99bf-ba6d99baf646",
+            apiHost: "https://flowise-production-91bf.up.railway.app",
+        })
+    </script>
+
+</body>
+</html>
